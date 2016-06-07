@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.10.3</scala.version>
         <scala.2.version>2.10</scala.2.version>
-        <spark.version>1.5.1</spark.version>
+        <spark.version>1.6.1</spark.version>
 
     </properties>
 
@@ -68,46 +68,6 @@
                     <scope>provided</scope>
                 </dependency>
 
-                <dependency>
-                    <groupId>org.elasticsearch</groupId>
-                    <artifactId>elasticsearch-hadoop</artifactId>
-                    <version>2.4.0.BUILD-SNAPSHOT</version>
-                    <exclusions>
-                        <exclusion>
-                            <artifactId>spark-core_2.10</artifactId>
-                            <groupId>org.apache.spark</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>spark-sql_2.10</artifactId>
-                            <groupId>org.apache.spark</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>hive-service</artifactId>
-                            <groupId>org.apache.hive</groupId>
-                        </exclusion>
-
-                        <exclusion>
-                            <artifactId>storm-core</artifactId>
-                            <groupId>org.apache.storm</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>pig</artifactId>
-                            <groupId>org.apache.pig</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>storm</artifactId>
-                            <groupId>org.apache.storm</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>cascading-local</artifactId>
-                            <groupId>cascading</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>cascading-hadoop</artifactId>
-                            <groupId>cascading</groupId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
             </dependencies>
         </profile>
         <profile>
@@ -142,9 +102,15 @@
     <dependencies>
 
         <dependency>
+            <groupId>net.liftweb</groupId>
+            <artifactId>lift-json_2.10</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka_2.10</artifactId>
-            <version>1.5.1</version>
+            <version>${spark.version}</version>
         </dependency>
 
         <dependency>
@@ -160,9 +126,41 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch-spark_2.10</artifactId>
-            <version>2.4.0.BUILD-SNAPSHOT</version>
+            <version>2.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>cascading</groupId>
+                    <artifactId>cascading-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>cascading</groupId>
+                    <artifactId>cascading-local</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.pig</groupId>
+                    <artifactId>pig</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>cascading</groupId>
+                    <artifactId>cascading-hadoop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.storm</groupId>
+                    <artifactId>storm-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.hive</groupId>
+                    <artifactId>hive-service</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
